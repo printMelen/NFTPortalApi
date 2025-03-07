@@ -1,0 +1,9 @@
+{
+    "name": "printmelen/nft-portal-api",
+    "autoload": {
+        "psr-4": {
+            "Printmelen\\NftPortalApi\\": "src/"
+        }
+    },
+    "require": {}
+}
