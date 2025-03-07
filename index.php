@@ -1,2 +1,3 @@
 <?php
-var_dump($_SERVER['REQUEST_URI']);
+$url=explode('/', $_SERVER['REQUEST_URI']);
+print_r($url);
