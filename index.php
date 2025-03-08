@@ -1,7 +1,10 @@
 <?php
 require 'vendor/autoload.php';
 use Printmelen\NftPortalApi\controllers\UserController;
+use Printmelen\NftPortalApi\controllers\ErrorHandler;
 use Printmelen\NftPortalApi\db\Database;
+
+set_exception_handler([ErrorHandler::class, 'handleException']);
 header('Content-Type: application/json; charset=utf-8');
 $url=explode('/', $_SERVER['REQUEST_URI']);
 if ($url[2] != 'user') {
@@ -10,7 +13,7 @@ if ($url[2] != 'user') {
 }
 
 $id = $url[3] ?? null;
-$database= new Database('localhost', 'nftportal', 'root', ''); // Database connection create a config file
+$database= new Database('localhost', 'nftportal', 'root', 'aa'); // Database connection create a config file
 $database->getConnection();
 $controller = new UserController();
 $controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
