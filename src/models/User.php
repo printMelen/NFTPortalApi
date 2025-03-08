@@ -21,5 +21,19 @@ class User{
 
         return $data;
     }
+
+    public function create(array $data){
+        $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+        $stmt = $this->connection->prepare('INSERT INTO user (username, email, password, saldo, phone) 
+                                            VALUES (:username, :email, :password, :saldo, :phone)');
+        $stmt->bindValue(':username', $data['username'], PDO::PARAM_STR);
+        $stmt->bindValue(':email', $data['email'], PDO::PARAM_STR);
+        $stmt->bindValue(':password', $data['password'], PDO::PARAM_STR);
+        $stmt->bindValue(':saldo', $data['saldo'], PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $data['phone'], PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $this->connection->lastInsertId();
+    }
     
 }

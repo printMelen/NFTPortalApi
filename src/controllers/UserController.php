@@ -25,7 +25,12 @@ class UserController{
                 break;
             case 'POST':
                 $data = (array) json_decode(file_get_contents('php://input'), true);
-                var_dump($data);
+                $id = $this->user->create($data);
+
+                echo json_encode([
+                    'message' => 'User created',
+                    'id' => $id
+                ]);
                 break;
             default:
                 http_response_code(405);
