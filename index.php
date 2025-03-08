@@ -5,6 +5,7 @@ use Printmelen\NftPortalApi\controllers\ErrorHandler;
 use Printmelen\NftPortalApi\db\Database;
 use Printmelen\NftPortalApi\models\User;
 
+set_error_handler([ErrorHandler::class, 'handleError']);
 set_exception_handler([ErrorHandler::class, 'handleException']);
 header('Content-Type: application/json; charset=utf-8');
 $url=explode('/', $_SERVER['REQUEST_URI']);
