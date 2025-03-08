@@ -15,6 +15,16 @@ class UserController{
     }
 
     public function processCollection(string $method):void {
-        
+        switch ($method) {
+            case 'GET':
+                echo json_encode(['id' => 123]);
+                break;
+            case 'POST':
+                // $this->postCollection();
+                break;
+            default:
+                http_response_code(405);
+                break;
+        }
     }
 }
