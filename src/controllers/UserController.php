@@ -24,7 +24,8 @@ class UserController{
                 echo json_encode($this->user->getAll());
                 break;
             case 'POST':
-                // $this->postCollection();
+                $data = (array) json_decode(file_get_contents('php://input'), true);
+                var_dump($data);
                 break;
             default:
                 http_response_code(405);
