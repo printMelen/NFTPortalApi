@@ -1,7 +1,11 @@
 <?php
 namespace Printmelen\NftPortalApi\controllers;
-
+use Printmelen\NftPortalApi\models\User;
 class UserController{
+
+    public function __construct(private User $user){
+        
+    }
     public function processRequest(string $method, ?string $id):void {
         if ($id) {
             $this->processItem($method, $id);       
@@ -17,7 +21,7 @@ class UserController{
     public function processCollection(string $method):void {
         switch ($method) {
             case 'GET':
-                echo json_encode(['id' => 123]);
+                echo json_encode($this->user->getAll());
                 break;
             case 'POST':
                 // $this->postCollection();
