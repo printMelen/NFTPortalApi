@@ -27,6 +27,7 @@ class UserController{
                 $data = (array) json_decode(file_get_contents('php://input'), true);
                 $id = $this->user->create($data);
 
+                http_response_code(201);
                 echo json_encode([
                     'message' => 'User created',
                     'id' => $id
